@@ -11,7 +11,7 @@ const MainContainer = ({children}) => {
 const Container = styled.div`
 	width: 800px;
 	margin: 0 auto;
-	padding: 20px;
+  padding: 20px 0;
 `
 
 export default MainContainer

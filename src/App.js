@@ -4,6 +4,7 @@ import Comunidade from './pages/Comunidade'
 import Pecas from './pages/Pecas'
 import Faq from './pages/Faq'
 import NotFound from './pages/NotFound'
+import Admin from './pages/Admin'
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
       <Route path='/comunidade' element={<Comunidade />} />
       <Route path='/pecas' element={<Pecas />} />
       <Route path='/faq' element={<Faq />} />
+      <Route path='/admin' element={<Admin />} />
       <Route path='*' element={<NotFound />} />
     </Routes>
   );

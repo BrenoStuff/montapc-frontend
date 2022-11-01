@@ -16,6 +16,8 @@ const Header = () => {
                     <li><NavLink to='/faq' end>FAQ</NavLink></li>
                     </Ul>
                 </nav>
+
+                <div>User</div>
             </HeaderContainer>
         </HeaderNav>
     )
@@ -32,7 +34,7 @@ const HeaderContainer = styled.div`
     height: 100%;
     margin: 0 auto;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     & a {
         text-decoration: none;
@@ -48,6 +50,9 @@ const Ul = styled.div`
     } & a {
         text-decoration: none;
         color: white;
+    } & :hover {
+        color: #DCDCDC;
+        text-decoration: underline;
     }
 `
 
