@@ -33,15 +33,29 @@ const Admin = () => {
           }
     }
 
-    const handleSubmitProcessor = (event) => {
+    const handleSubmitPiece = (event, type) => {
         event.preventDefault()
-        const { name, email, pass, avatar } = event.target
-        createPiece({
+        if(type === 'graphicscard'){
+            const { name, description, pciExpress, price, image} = event.target
+            createPiece({
             name: name.value,
-            email: email.value,
-            pass: pass.value,
-            avatar: avatar.value
-        }, 'processor')
+            description: description.value,
+            pciExpress: pciExpress.value,
+            price: price.value,
+            image: image.value
+            }, type)
+        } else {
+            const { name, description, socket, typeMemory, pciExpress, price, image} = event.target
+            createPiece({
+                name: name.value,
+                description: description.value,
+                socket: socket.value,
+                typeMemory: typeMemory.value,
+                pciExpress: pciExpress.value,
+                price: price.value,
+                image: image.value
+            }, type)
+        }
     }
 
     return (
@@ -55,8 +69,8 @@ const Admin = () => {
                         <h3>Processador</h3>
                         <h4>Adicionar</h4>
                         <Alert type="error" opened={error.hasError}>{error.message}</Alert>
-                        <Alert type="success" opened={success}>Usuário Cadastrado com sucesso!</Alert>
-                        <form onSubmit={(event) => handleSubmitProcessor(event)}>
+                        <Alert type="success" opened={success}>Processador cadastrado com sucesso!</Alert>
+                        <form onSubmit={(event) => handleSubmitPiece(event, 'processor')}>
                             <p>Nome: <input type="text" name="name"/></p>
                             <p>Desc: <input type="text" name="description"/></p>
                             <p>Sock: <input type="text" name="socket"/></p>
@@ -69,9 +83,33 @@ const Admin = () => {
                     </div>
                     <div>
                         <h3>Placa mae</h3>
+                        <h4>Adicionar</h4>
+                        <Alert type="error" opened={error.hasError}>{error.message}</Alert>
+                        <Alert type="success" opened={success}>Placa mãe cadastrada com sucesso!</Alert>
+                        <form onSubmit={(event) => handleSubmitPiece(event, 'motherboard')}>
+                            <p>Nome: <input type="text" name="name"/></p>
+                            <p>Desc: <input type="text" name="description"/></p>
+                            <p>Sock: <input type="text" name="socket"/></p>
+                            <p>Memo: <input type="text" name="typeMemory"/></p>
+                            <p>PciE: <input type="text" name="pciExpress"/></p>
+                            <p>Pric: <input type="text" name="price"/></p>
+                            <p>Imag: <input type="text" name="image"/></p>
+                            <button type="submit"> Send </button>
+                        </form>
                     </div>
                     <div>
                         <h3>Placa de vídeo</h3>
+                        <h4>Adicionar</h4>
+                        <Alert type="error" opened={error.hasError}>{error.message}</Alert>
+                        <Alert type="success" opened={success}>Placa de vídeo cadastrada com sucesso!</Alert>
+                        <form onSubmit={(event) => handleSubmitPiece(event, 'graphicscard')}>
+                            <p>Nome: <input type="text" name="name"/></p>
+                            <p>Desc: <input type="text" name="description"/></p>
+                            <p>PciE: <input type="text" name="pciExpress"/></p>
+                            <p>Pric: <input type="text" name="price"/></p>
+                            <p>Imag: <input type="text" name="image"/></p>
+                            <button type="submit"> Send </button>
+                        </form>
                     </div>
                 </DivRow>
             </MainContainer>
