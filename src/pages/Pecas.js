@@ -11,9 +11,10 @@ const Pecas = () => {
 		<DivRow>
 			<div>
 				<h3>Listagem de todas</h3>
+				<p>aqui vai ter todas as peças</p>
 			</div>
 			<div>
-				<h3>Processadores</h3>
+				<h3>Processadores list</h3>
 			</div>
 			<div>
 				<h3>Placa mães</h3>
