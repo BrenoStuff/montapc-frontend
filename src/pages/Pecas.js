@@ -10,6 +10,9 @@ const Pecas = () => {
 		<h1>Peças</h1>
 		<DivRow>
 			<div>
+				<h3>Listagem de todas</h3>
+			</div>
+			<div>
 				<h3>Processadores</h3>
 			</div>
 			<div>
@@ -29,7 +32,7 @@ const DivRow = styled.div`
     flex-direction: row;
     & div {
         margin: 10px 0;
-        width: 266px; 
+        width: 200px;
     } & h3 {
         margin: 5px 0;
     }

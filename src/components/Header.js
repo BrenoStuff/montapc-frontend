@@ -11,9 +11,9 @@ const Header = () => {
 
                 <nav>
                     <Ul>
-                    <li><NavLink to='/comunidade' end>Comunidade</NavLink></li>
-                    <li><NavLink to='/pecas' end>Peças</NavLink></li>
-                    <li><NavLink to='/faq' end>FAQ</NavLink></li>
+                        <li><NavLink to='/comunidade' end>Comunidade</NavLink></li>
+                        <li><NavLink to='/pecas' end>Peças</NavLink></li>
+                        <li><NavLink to='/faq' end>FAQ</NavLink></li>
                     </Ul>
                 </nav>
 
