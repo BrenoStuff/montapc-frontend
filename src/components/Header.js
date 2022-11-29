@@ -46,7 +46,7 @@ const Ul = styled.div`
     display: flex;
     & li {
         list-style-type: none;
-        margin: 0 0 0 20px;
+        margin: 0 20px 0 0;
     } & a {
         text-decoration: none;
         color: white;
