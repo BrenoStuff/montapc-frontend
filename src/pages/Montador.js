@@ -10,30 +10,31 @@ import CardPiece from '../components/CardPiece'
 const Montador = () => {
 
     const { first } = useParams()
-    const [pcPieces, setPcPieces] = useState([])
+	
+    const [pcPieces, setPcPieces] = useState({})
 	const [pieceNow, setPieceNow] = useState()
 	const [action, setAction] = useState()
 	const [pieces, setPieces] = useState([])
 
-    useEffect(() => {
-		requestFirstPieces()
-		requestPieces()
-	},[])
+	useEffect(() => {
+		loadFirstPiece(first)
+	}, [])
 
-    const requestFirstPieces = async () => {
-		const response = await fetch(`${API_PATH + first}/list`)
+	const loadFirstPiece = async (piece) => {
+		const response = await fetch(`${API_PATH + piece}/list`)
 		const result = await response.json()
-		setPieces(result[first])
-		setPieceNow(first)
+		setPieces(result[piece])
+		setPieceNow(piece)
     }
 
-	const requestPieces = async () => {
-		const response = await fetch(`${API_PATH + pieceNow + action}`)
+	const loadNextPiece = async () => {
+		const response = await fetch(`${API_PATH + pieceNow + action}`, {
+			method: 'POST',
+			body: 
+		})
 		const result = await response.json()
-		if(result !== undefined)
+		console.log('console.log pieceNow: ' + pieceNow)
 		setPieces(result[pieceNow])
-		//TO AQUI
-		
 	}
 
     return (
@@ -48,7 +49,7 @@ const Montador = () => {
 				? <p>Nenhuma peça</p>
 				: pieces.map((piece) =>  
 					(
-					<CardPiece piece={piece} key={piece.id} type={pieceNow} isMontador={true} setAction={setAction} pcPieces={pcPieces} setPieceNow={setPieceNow} setPcPieces={setPcPieces}/>
+					<CardPiece piece={piece} key={piece.id} isMontador={true} setAction={setAction} pieceNow={pieceNow} setPieceNow={setPieceNow} pcPieces={pcPieces} setPcPieces={setPcPieces}/>
 					)
 				)
 			}

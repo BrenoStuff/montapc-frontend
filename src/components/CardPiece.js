@@ -1,30 +1,33 @@
 import styled from 'styled-components'
 
-const CardPiece = ({ piece, onClick, type, isMontador, setAction, setPieceNow, pcPieces, setPcPieces }) => {
+const CardPiece = ({ piece, onClick, pieceNow, isMontador, setAction, setPieceNow, pcPieces, setPcPieces }) => {
 
     const { image, name, description, price } = piece
 
     const handleAddPiece = () =>{
-        if (pcPieces.length === 0){
-            setAction(`by${type}`)
-            if (type === 'processor') {
+        if (Object.keys(pcPieces).length === 0){
+            setAction(`by${pieceNow}`)
+            if (pieceNow === 'processor') {
                 setPieceNow('motherboard')
             } else {
                 setPieceNow('processor')
             }
         }
-        if (pcPieces.length === 1) {
-            if (pcPieces[0] === 'processor'){
+        if (Object.keys(pcPieces) === 1) {
+            if (Object.keys(pcPieces)[0] === 'processor'){
                 setAction('byMotherboard')
                 setPieceNow('graphicsCard')
             }
-            if (pcPieces[0] === 'graphicscard') {
+            if (Object.keys(pcPieces)[0] === 'graphicscard') {
                 setAction('byProcessor')
                 setPieceNow('motherboard')
             }
             else {
                 setAction('byProcessor')
             }
+        }
+        if (Object.keys(pcPieces) === 2) {
+            console.log('ACABOU')
         }
     }
 
@@ -33,10 +36,8 @@ const CardPiece = ({ piece, onClick, type, isMontador, setAction, setPieceNow, p
             <Img src={image} alt={name} />
             <TextBox>
                 <h3>{name}</h3>
-                <p>{description}</p>
-                <p>{price}</p>
 
-                { isMontador ? <button onClick=""> add </button> : "" }
+                { isMontador ? <button onClick={() => handleAddPiece()}> add </button> : "" }
             </TextBox>
         </CardUser>
         )
