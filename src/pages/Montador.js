@@ -11,9 +11,9 @@ const Montador = () => {
 
     const { first } = useParams()
 	
-    const [pcPieces, setPcPieces] = useState({})
-	const [pieceNow, setPieceNow] = useState()
+    const [pcPieces, setPcPieces] = useState([])
 	const [action, setAction] = useState()
+	const [pieceNow, setPieceNow] = useState({})
 	const [pieces, setPieces] = useState([])
 
 	useEffect(() => {
@@ -25,16 +25,16 @@ const Montador = () => {
 		const result = await response.json()
 		setPieces(result[piece])
 		setPieceNow(piece)
+		setPcPieces([{type: piece}])
     }
 
 	const loadNextPiece = async () => {
-		const response = await fetch(`${API_PATH + pieceNow + action}`, {
+		const response = await fetch(`${API_PATH + pieceNow.type + action}`, {
 			method: 'POST',
-			body: 
+			body: pieceNow.data,
 		})
 		const result = await response.json()
-		console.log('console.log pieceNow: ' + pieceNow)
-		setPieces(result[pieceNow])
+		setPieces(result[pieceNow.type.type])
 	}
 
     return (
@@ -43,18 +43,16 @@ const Montador = () => {
         <Header/>
         <MainContainer>
             <div>Montador</div>
-            <p>Primeiro: {first}</p>
+            <h3>Primeiro: {first}</h3>
 			{
-				pieces.length === 0
+				pcPieces.length === 0
 				? <p>Nenhuma peça</p>
 				: pieces.map((piece) =>  
 					(
-					<CardPiece piece={piece} key={piece.id} isMontador={true} setAction={setAction} pieceNow={pieceNow} setPieceNow={setPieceNow} pcPieces={pcPieces} setPcPieces={setPcPieces}/>
+					<CardPiece piece={piece} key={piece.id} isMontador={true}/>
 					)
 				)
 			}
-			<hr/>
-			<h3>requestPieces</h3>
         </MainContainer>
         </MainContent>
         </>
