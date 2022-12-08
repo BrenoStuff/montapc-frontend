@@ -1,1 +1,1 @@
-export const API_PATH = 'http://localhost/PJ3/montapc-backend/'
+export const API_PATH = 'http://23.22.86.52/brenos/montapc-backend/'
