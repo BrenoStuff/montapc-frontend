@@ -9,19 +9,20 @@ const CardGraphicsCard = ({piece, role, setPieces, pieces, setPcPieces, pcPieces
     const [isSelected, setIsSelected] = useState(false)
 
     const handleAddPiece = () => {
-        setPcPieces(...pcPieces, {
-            type: 'processor', data: {
-                id,
-                name,
-                description,
-                socket: piece.socket,
-                typeMemory: piece.typeMemory,
-                pciExpress: piece.pciExpress,
-                price: piece.price,
-                image
-            }})
+        setPcPieces({...pcPieces,
+            graphicsCard: {
+                data: {
+                    id,
+                    name,
+                    description,
+                    pciExpress: piece.pciExpress,
+                    price: piece.price,
+                    image
+                }
+            }
+        })
         setIsSelected(true)
-        console.log("pcPieces (processor)" + pcPieces)
+        console.log("pcPieces (graphiscard)" + JSON.stringify(pcPieces))
     }
 
     const deletePiece = async (id) => {

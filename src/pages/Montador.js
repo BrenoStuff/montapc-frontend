@@ -20,9 +20,11 @@ const Montador = () => {
             <div>Montador</div>
 			<ListPieces type={first} role="montador" setPcPieces={setPcPieces} pcPieces={pcPieces}/>
 
-            { pcPieces.length >= 1 ? <ListPieces type="motherboard" role="montador" setPcPieces={setPcPieces} pcPieces={pcPieces}/> : "" }
+            { pcPieces?.processor ? <ListPieces type="motherboard" role="montador" setPcPieces={setPcPieces} pcPieces={pcPieces}/> : "" }
 
-            { pcPieces.length >= 2 ? <ListPieces type="graphicscard" role="montador" setPcPieces={setPcPieces} pcPieces={pcPieces}/> : "" }
+            { pcPieces?.motherboard ? <ListPieces type="graphicscard" role="montador" setPcPieces={setPcPieces} pcPieces={pcPieces}/> : "" }
+
+            { pcPieces?.graphicsCard ? <button> continuar </button> : "" }
         </MainContainer>
         </MainContent>
         </>
