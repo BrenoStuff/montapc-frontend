@@ -1,41 +1,16 @@
 import React from 'react'
 import styled from 'styled-components'
 import Header from '../components/Header'
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { useParams } from 'react-router-dom'
 import MainContainer from '../components/MainContainer'
-import { API_PATH } from '../config'
-import CardPiece from '../components/CardPiece'
+import ListPieces from '../components/ListPieces'
 
 const Montador = () => {
 
     const { first } = useParams()
 	
-    const [pcPieces, setPcPieces] = useState([])
-	const [action, setAction] = useState()
-	const [pieceNow, setPieceNow] = useState({})
-	const [pieces, setPieces] = useState([])
-
-	useEffect(() => {
-		loadFirstPiece(first)
-	}, [])
-
-	const loadFirstPiece = async (piece) => {
-		const response = await fetch(`${API_PATH + piece}/list`)
-		const result = await response.json()
-		setPieces(result[piece])
-		setPieceNow(piece)
-		setPcPieces([{type: piece}])
-    }
-
-	const loadNextPiece = async () => {
-		const response = await fetch(`${API_PATH + pieceNow.type + action}`, {
-			method: 'POST',
-			body: pieceNow.data,
-		})
-		const result = await response.json()
-		setPieces(result[pieceNow.type.type])
-	}
+    const [pcPieces, setPcPieces] = useState({})
 
     return (
         <>
@@ -43,16 +18,11 @@ const Montador = () => {
         <Header/>
         <MainContainer>
             <div>Montador</div>
-            <h3>Primeiro: {first}</h3>
-			{
-				pcPieces.length === 0
-				? <p>Nenhuma peça</p>
-				: pieces.map((piece) =>  
-					(
-					<CardPiece piece={piece} key={piece.id} isMontador={true}/>
-					)
-				)
-			}
+			<ListPieces type={first} role="montador" setPcPieces={setPcPieces} pcPieces={pcPieces}/>
+
+            { pcPieces.length >= 1 ? <ListPieces type="motherboard" role="montador" setPcPieces={setPcPieces} pcPieces={pcPieces}/> : "" }
+
+            { pcPieces.length >= 2 ? <ListPieces type="graphicscard" role="montador" setPcPieces={setPcPieces} pcPieces={pcPieces}/> : "" }
         </MainContainer>
         </MainContent>
         </>
@@ -61,7 +31,6 @@ const Montador = () => {
 
 const MainContent = styled.div`
   color: white;
-  height: 900px;
   background: #7700C0;
 `
 

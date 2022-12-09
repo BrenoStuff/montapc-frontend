@@ -2,7 +2,9 @@ import styled from 'styled-components'
 
 const Alert = ({children, type, opened}) => {
 	return (
-		<AlertBox type={type} opened={opened}>{children}</AlertBox>
+		<AlertBox type={type} opened={opened}>
+			{children}
+		</AlertBox>
 	)
 }
 
