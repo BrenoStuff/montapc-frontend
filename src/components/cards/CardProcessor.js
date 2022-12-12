@@ -23,7 +23,6 @@ const CardProcessor = ({piece, role, setPieces, pieces, setPcPieces, pcPieces, s
                 }
             } 
         })
-        console.log("pcPieces (processor)" + JSON.stringify(pcPieces))
         setIsSelected(true)
     }
 

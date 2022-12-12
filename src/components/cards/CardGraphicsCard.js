@@ -22,7 +22,6 @@ const CardGraphicsCard = ({piece, role, setPieces, pieces, setPcPieces, pcPieces
             }
         })
         setIsSelected(true)
-        console.log("pcPieces (graphiscard)" + JSON.stringify(pcPieces))
     }
 
     const deletePiece = async (id) => {

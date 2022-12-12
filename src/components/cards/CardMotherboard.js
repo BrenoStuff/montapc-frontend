@@ -24,7 +24,6 @@ const CardMotherboard = ({piece, role, setPieces, pieces, setPcPieces, pcPieces,
             }
         })
         setIsSelected(true)
-        console.log("pcPieces (motherboard)" + JSON.stringify(pcPieces))
     }
 
     const deletePiece = async (id) => {
