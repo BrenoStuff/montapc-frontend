@@ -183,7 +183,7 @@ const Admin = () => {
                     <input type="hidden" name="id" value={pieceToEdit.id}/>
                     <p>Name: <input type="text" name="name" value={pieceToEdit.name} onChange={(event)=>handleEditChange(event)}/></p>
                     <p>Description: <input type="text" name="description" value={pieceToEdit.description} onChange={(event)=>handleEditChange(event)}/></p>
-                    <p>PciExpress: <input type="text" name="pciExpress" value={pieceToEdit.pciExpress} onChange={(event)=>handleEditChange(event)}/></p>
+                    <p>pciExpress: <input type="text" name="pciExpress" value={pieceToEdit.pciExpress} onChange={(event)=>handleEditChange(event)}/></p>
                     <p>Price: <input type="text" name="price" value={pieceToEdit.price} onChange={(event)=>handleEditChange(event)}/></p>
                     <p>Image: <input type="text" name="image" value={pieceToEdit.image} onChange={(event)=>handleEditChange(event)}/></p>
                     <button type="submit">Update</button>
@@ -194,8 +194,8 @@ const Admin = () => {
                     <p>Name: <input type="text" name="name" value={pieceToEdit.name} onChange={(event)=>handleEditChange(event)}/></p>
                     <p>Description: <input type="text" name="description" value={pieceToEdit.description} onChange={(event)=>handleEditChange(event)}/></p>
                     <p>Socket: <input type="text" name="socket" value={pieceToEdit.socket} onChange={(event)=>handleEditChange(event)}/></p>
-                    <p>TypeMemory: <input type="text" name="typeMemory" value={pieceToEdit.typeMemory} onChange={(event)=>handleEditChange(event)}/></p>
-                    <p>PciExpress: <input type="text" name="pciExpress" value={pieceToEdit.pciExpress} onChange={(event)=>handleEditChange(event)}/></p>
+                    <p>typeMemory: <input type="text" name="typeMemory" value={pieceToEdit.typeMemory} onChange={(event)=>handleEditChange(event)}/></p>
+                    <p>pciExpress: <input type="text" name="pciExpress" value={pieceToEdit.pciExpress} onChange={(event)=>handleEditChange(event)}/></p>
                     <p>Price: <input type="text" name="price" value={pieceToEdit.price} onChange={(event)=>handleEditChange(event)}/></p>
                     <p>Image: <input type="text" name="image" value={pieceToEdit.image} onChange={(event)=>handleEditChange(event)}/></p>
                     <button type="submit">Update</button>

@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react'
 import { FiTrash2, FiEdit2 } from 'react-icons/fi'
 import { API_PATH } from '../../config'
 
-const CardGraphicsCard = ({piece, role, setPieces, pieces, setPcPieces, pcPieces, setShowModal, setPieceToEdit}) => {
+const Cardgraphicscard = ({piece, role, setPieces, pieces, setPcPieces, pcPieces, setShowModal, setPieceToEdit}) => {
     const { id, name, description, image } = piece
 
     const [isSelected, setIsSelected] = useState(false)
@@ -14,8 +14,8 @@ const CardGraphicsCard = ({piece, role, setPieces, pieces, setPcPieces, pcPieces
     }, [pcPieces])
 
     const handleIsSelected = () => {
-        if (pcPieces?.graphicsCard) {
-            if (pcPieces.graphicsCard.data.id === id) {
+        if (pcPieces?.graphicscard) {
+            if (pcPieces.graphicscard.data.id === id) {
                 setIsSelected(true)
             } else {
                 setIsSelected(false)
@@ -28,7 +28,7 @@ const CardGraphicsCard = ({piece, role, setPieces, pieces, setPcPieces, pcPieces
 
     const handleAddPiece = () => {
         setPcPieces({...pcPieces,
-            graphicsCard: {
+            graphicscard: {
                 data: {
                     id,
                     name,
@@ -141,4 +141,4 @@ const Button = styled.button`
     }
 `
 
-export default CardGraphicsCard
+export default Cardgraphicscard

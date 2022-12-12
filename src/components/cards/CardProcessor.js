@@ -26,6 +26,7 @@ const CardProcessor = ({piece, role, setPieces, pieces, setPcPieces, pcPieces, s
     }
 
     const handleAddPiece = () => {
+        console.log(JSON.stringify(piece))
         setPcPieces({...pcPieces,
             processor: {
                 data: {

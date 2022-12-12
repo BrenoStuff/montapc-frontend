@@ -1,6 +1,6 @@
 const NextPiece = (pcPieces, number) => {
 	if (number === 1) {
-		if (pcPieces[0].type === 'processor') {
+		if (Object.keys(pcPieces)[0] === 'processor') {
 			return 'motherboard'
 		} else {
 			return 'processor'
@@ -8,10 +8,10 @@ const NextPiece = (pcPieces, number) => {
 	}
 
 	if (number === 2) {
-		if (pcPieces[0].type === 'graphicsCard') {
+		if (Object.keys(pcPieces)[0] === 'graphicscard') {
 			return 'motherboard'
 		} else {
-			return 'graphicsCard'
+			return 'graphicscard'
 		}
 	}
 }

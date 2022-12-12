@@ -1,9 +1,10 @@
 import styled from 'styled-components'
 import CardProcessor from './cards/CardProcessor'
 import CardMotherboard from './cards/CardMotherboard'
-import CardGraphicsCard from './cards/CardGraphicsCard'
+import Cardgraphicscard from './cards/CardGraphicsCard'
 import { API_PATH } from '../config'
 import { useState, useEffect } from 'react'
+import PreparePiece from '../helpers/PreparePiece'
 
 const ListPieces = ({type, action = '/list', role = "view", setPcPieces, pcPieces, showModal, setShowModal, setPieceToEdit}) => {
 
@@ -15,12 +16,16 @@ const ListPieces = ({type, action = '/list', role = "view", setPcPieces, pcPiece
     }, [showModal, type])
 
     const loadPiece = async () => {
-		const response = await fetch(`${API_PATH + type + action}`)
+		const response = await fetch(`${API_PATH + type + action}`, action === '/list' ? {} : {
+            method: 'POST',
+            body: JSON.stringify(PreparePiece(pcPieces, "processor"))
+        })
 		const result = await response.json()
         setPieces(result[type])
     }
 
     return (
+        <>
             <CardsBackground>
                 <ScrollDiv>
                     {//eslint-disable-next-line
@@ -30,11 +35,13 @@ const ListPieces = ({type, action = '/list', role = "view", setPcPieces, pcPiece
                         } else if (type === 'processor') {
                             return <CardProcessor key={piece.id} piece={piece} role={role} setPieces={setPieces} pieces={pieces} setPcPieces={setPcPieces} pcPieces={pcPieces} setShowModal={setShowModal} setPieceToEdit={setPieceToEdit}/>
                         } else if (type === 'graphicscard') {
-                            return <CardGraphicsCard key={piece.id} piece={piece} role={role} setPieces={setPieces} pieces={pieces} setPcPieces={setPcPieces} pcPieces={pcPieces} setShowModal={setShowModal} setPieceToEdit={setPieceToEdit}/>
+                            return <Cardgraphicscard key={piece.id} piece={piece} role={role} setPieces={setPieces} pieces={pieces} setPcPieces={setPcPieces} pcPieces={pcPieces} setShowModal={setShowModal} setPieceToEdit={setPieceToEdit}/>
                         }
                     }) : "Carregando peças..."}
                 </ScrollDiv>
             </CardsBackground>
+        </>
+
     )
 }
 
