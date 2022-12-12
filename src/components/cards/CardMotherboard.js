@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { FiTrash2, FiEdit2 } from 'react-icons/fi'
 import { API_PATH } from '../../config'
 
@@ -7,6 +7,24 @@ const CardMotherboard = ({piece, role, setPieces, pieces, setPcPieces, pcPieces,
     const { id, name, description, image } = piece
 
     const [isSelected, setIsSelected] = useState(false)
+
+    useEffect(() => {
+        handleIsSelected()
+    // eslint-disable-next-line
+    }, [pcPieces])
+
+    const handleIsSelected = () => {
+        if (pcPieces?.motherboard) {
+            if (pcPieces.motherboard.data.id === id) {
+                setIsSelected(true)
+            } else {
+                setIsSelected(false)
+            }
+        } else {
+            setIsSelected(false)
+        }
+    }
+
 
     const handleAddPiece = () => {
         setPcPieces({...pcPieces,
