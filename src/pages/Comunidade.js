@@ -2,6 +2,7 @@ import React from 'react'
 import Header from '../components/Header'
 import styled from 'styled-components'
 import MainContainer from '../components/MainContainer'
+import ListComputers from '../components/ListComputers'
 
 const Comunidade = () => {
 return (
@@ -9,7 +10,8 @@ return (
 	<Header/>
 	<MainContent>
 	<MainContainer>
-		<div>Comunidade</div>	
+		<div>Comunidade</div>
+		<ListComputers/>
 	</MainContainer>
 	</MainContent>
 	</>
