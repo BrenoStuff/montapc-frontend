@@ -2,12 +2,11 @@ import React from 'react'
 import styled from 'styled-components'
 import Header from '../components/Header'
 import { useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, redirect } from 'react-router-dom'
 import MainContainer from '../components/MainContainer'
 import ListPieces from '../components/ListPieces'
 import { API_PATH } from '../config'
 import NextPiece from '../helpers/NextPiece'
-import NextAction from '../helpers/NextAction'
 
 const Montador = () => {
 
@@ -23,7 +22,7 @@ const Montador = () => {
             body: JSON.stringify({
                 processor: pcPieces.processor.data.id,
                 motherboard: pcPieces.motherboard.data.id,
-                graphicscard: pcPieces.graphicscard.data.id
+                graphicsCard: pcPieces.graphicscard.data.id
             })
         })
 		const result = await response.json()
@@ -33,6 +32,7 @@ const Montador = () => {
                 message: "Peça criada com sucesso!"
             })
             setInterval(setSuccess({...success, hasSuccess: false}), 1000 * 5);
+            redirect('/comunidade')
           } else if(result?.error){
             if(result?.error?.message){
               setError({
@@ -56,9 +56,9 @@ const Montador = () => {
             <div>Montador</div>
 			        <ListPieces type={first} role="montador" setPcPieces={setPcPieces} pcPieces={pcPieces}/>
 
-              { Object.keys(pcPieces).length >= 1 ? <ListPieces type={NextPiece(pcPieces, 1)} action={NextAction(pcPieces, 1)} role="montador" setPcPieces={setPcPieces} pcPieces={pcPieces}/> : "" }
+              { Object.keys(pcPieces).length >= 1 ? <ListPieces type={NextPiece(pcPieces, 1)} role="montador" setPcPieces={setPcPieces} pcPieces={pcPieces}/> : "" }
 
-              { Object.keys(pcPieces).length >= 2 ? <ListPieces type={NextPiece(pcPieces, 2)} action={NextAction(pcPieces, 2)} role="montador" setPcPieces={setPcPieces} pcPieces={pcPieces}/> : "" }
+              { Object.keys(pcPieces).length >= 2 ? <ListPieces type={NextPiece(pcPieces, 2)} role="montador" setPcPieces={setPcPieces} pcPieces={pcPieces}/> : "" }
 
               { Object.keys(pcPieces).length >= 3 ? <button onClick={() => createComputer()}> TERMINAR </button> : "" }
         </MainContainer>

@@ -21,7 +21,6 @@ const Admin = () => {
 
     function handleTypeChange(event) {
         setType(event.target.value);
-        console.log(event.target.value)
     }
 
     const handleEditChange = (event) =>{
@@ -68,22 +67,22 @@ const Admin = () => {
     const handleSubmitPiece = (event, type) => {
         event.preventDefault()
         if(type === 'graphicscard'){
-            const { name, description, pciExpress, price, image} = event.target
+            const { name, description, pciexpress, price, image} = event.target
             createPiece({
             name: name.value,
             description: description.value,
-            pciExpress: pciExpress.value,
+            pciexpress: pciexpress.value,
             price: price.value,
             image: image.value
             }, type)
         } else {
-            const { name, description, socket, typeMemory, pciExpress, price, image} = event.target
+            const { name, description, socket, typememory, pciexpress, price, image} = event.target
             createPiece({
                 name: name.value,
                 description: description.value,
                 socket: socket.value,
-                typeMemory: typeMemory.value,
-                pciExpress: pciExpress.value,
+                typememory: typememory.value,
+                pciexpress: pciexpress.value,
                 price: price.value,
                 image: image.value
             }, type)
@@ -93,24 +92,24 @@ const Admin = () => {
     const handleSubmitUpdate = (event) => {
         event.preventDefault()
         if(type === 'graphicscard'){
-            const { id, name, description, pciExpress, price, image} = event.target
+            const { id, name, description, pciexpress, price, image} = event.target
             updatePiece({
             id: id.value,
             name: name.value,
             description: description.value,
-            pciExpress: pciExpress.value,
+            pciexpress: pciexpress.value,
             price: price.value,
             image: image.value
             }, type)
         } else {
-            const { id, name, description, socket, typeMemory, pciExpress, price, image} = event.target
+            const { id, name, description, socket, typememory, pciexpress, price, image} = event.target
             updatePiece({
                 id: id.value,
                 name: name.value,
                 description: description.value,
                 socket: socket.value,
-                typeMemory: typeMemory.value,
-                pciExpress: pciExpress.value,
+                typememory: typememory.value,
+                pciexpress: pciexpress.value,
                 price: price.value,
                 image: image.value
             }, type)
@@ -140,11 +139,11 @@ const Admin = () => {
                         <p>Nome: <input type="text" name="name"/></p>
                         <p>Desc: <input type="text" name="description"/></p>
                         <p>Sock: <input type="text" name="socket"/></p>
-                        <p>Memo: <input type="text" name="typeMemory"/></p>
-                        <p>PciE: <input type="text" name="pciExpress"/></p>
+                        <p>Memo: <input type="text" name="typememory"/></p>
+                        <p>PciE: <input type="text" name="pciexpress"/></p>
                         <p>Pric: <input type="text" name="price"/></p>
                         <p>Imag: <input type="text" name="image"/></p>
-                        <button type="submit"> Send </button>
+                        <button type="submit"> Cadastrar processador </button>
                     </form>
                 : ""}
 
@@ -153,11 +152,11 @@ const Admin = () => {
                         <p>Nome: <input type="text" name="name"/></p>
                         <p>Desc: <input type="text" name="description"/></p>
                         <p>Sock: <input type="text" name="socket"/></p>
-                        <p>Memo: <input type="text" name="typeMemory"/></p>
-                        <p>PciE: <input type="text" name="pciExpress"/></p>
+                        <p>Memo: <input type="text" name="typememory"/></p>
+                        <p>PciE: <input type="text" name="pciexpress"/></p>
                         <p>Pric: <input type="text" name="price"/></p>
                         <p>Imag: <input type="text" name="image"/></p>
-                    <button type="submit"> Send </button>
+                    <button type="submit"> Cadastrar placa mãe </button>
                 </form>
                 : ""}
 
@@ -165,10 +164,10 @@ const Admin = () => {
                     <form onSubmit={(event) => handleSubmitPiece(event, 'graphicscard')}>
                         <p>Nome: <input type="text" name="name"/></p>
                         <p>Desc: <input type="text" name="description"/></p>
-                        <p>PciE: <input type="text" name="pciExpress"/></p>
+                        <p>PciE: <input type="text" name="pciexpress"/></p>
                         <p>Pric: <input type="text" name="price"/></p>
                         <p>Imag: <input type="text" name="image"/></p>
-                        <button type="submit"> Send </button>
+                        <button type="submit"> Cadastrar placa de vídeo </button>
                     </form>
                 : ""}
 
@@ -183,7 +182,7 @@ const Admin = () => {
                     <input type="hidden" name="id" value={pieceToEdit.id}/>
                     <p>Name: <input type="text" name="name" value={pieceToEdit.name} onChange={(event)=>handleEditChange(event)}/></p>
                     <p>Description: <input type="text" name="description" value={pieceToEdit.description} onChange={(event)=>handleEditChange(event)}/></p>
-                    <p>pciExpress: <input type="text" name="pciExpress" value={pieceToEdit.pciExpress} onChange={(event)=>handleEditChange(event)}/></p>
+                    <p>pciexpress: <input type="text" name="pciexpress" value={pieceToEdit.pciexpress} onChange={(event)=>handleEditChange(event)}/></p>
                     <p>Price: <input type="text" name="price" value={pieceToEdit.price} onChange={(event)=>handleEditChange(event)}/></p>
                     <p>Image: <input type="text" name="image" value={pieceToEdit.image} onChange={(event)=>handleEditChange(event)}/></p>
                     <button type="submit">Update</button>
@@ -194,8 +193,8 @@ const Admin = () => {
                     <p>Name: <input type="text" name="name" value={pieceToEdit.name} onChange={(event)=>handleEditChange(event)}/></p>
                     <p>Description: <input type="text" name="description" value={pieceToEdit.description} onChange={(event)=>handleEditChange(event)}/></p>
                     <p>Socket: <input type="text" name="socket" value={pieceToEdit.socket} onChange={(event)=>handleEditChange(event)}/></p>
-                    <p>typeMemory: <input type="text" name="typeMemory" value={pieceToEdit.typeMemory} onChange={(event)=>handleEditChange(event)}/></p>
-                    <p>pciExpress: <input type="text" name="pciExpress" value={pieceToEdit.pciExpress} onChange={(event)=>handleEditChange(event)}/></p>
+                    <p>typememory: <input type="text" name="typememory" value={pieceToEdit.typememory} onChange={(event)=>handleEditChange(event)}/></p>
+                    <p>pciexpress: <input type="text" name="pciexpress" value={pieceToEdit.pciexpress} onChange={(event)=>handleEditChange(event)}/></p>
                     <p>Price: <input type="text" name="price" value={pieceToEdit.price} onChange={(event)=>handleEditChange(event)}/></p>
                     <p>Image: <input type="text" name="image" value={pieceToEdit.image} onChange={(event)=>handleEditChange(event)}/></p>
                     <button type="submit">Update</button>

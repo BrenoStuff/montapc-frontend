@@ -2,11 +2,13 @@ import { FiTrash2 } from 'react-icons/fi'
 import styled from 'styled-components'
 import { API_PATH } from '../../config'
 import { useState, useEffect } from 'react'
+import Modal from '../Modal'
 
 const CardComputer = ({computer, setComputers, computers}) => {
 
   const { id, processor, graphicscard, motherboard } = computer
-  const { cardComputer, setCardComputer } = useState({})
+  const [ cardComputer, setCardComputer ] = useState({})
+  const [ showModal, setShowModal] = useState(false)
 
   useEffect(() => {
     loadCardComputer()
@@ -57,33 +59,53 @@ const CardComputer = ({computer, setComputers, computers}) => {
 
 
   return (
-    <Holder>
+    <>
+    <Holder onClick={() => setShowModal(true)}>
             <Background>
                 <TextBox>
-					{
-						cardComputer === undefined ? "" : <>
-							<h3>{CardComputer.processor.name}</h3>
-							<h3>{CardComputer.motherboard.name}</h3>
-							<h3>{CardComputer.graphicscard.name}</h3>
-						</>
-					}
+                  { cardComputer?.processor ? <h3> • {cardComputer.processor.name} </h3> : "" }
+                  { cardComputer?.motherboard ? <h3> • {cardComputer.motherboard.name } </h3> : "" }
+                  { cardComputer?.graphicscard ? <h3> • {cardComputer.graphicscard.name } </h3> : "" }
                 </TextBox>
             </Background>
             <DivButton><Button role="admin" onClick={() => deleteComputer(id)}> <FiTrash2/> </Button></DivButton>
         </Holder>
+
+      <Modal showModal={showModal} setShowModal={setShowModal}>
+        <h1>Informações computador</h1>
+        { cardComputer?.processor ? <>
+          <h3>Processador</h3>
+          <p>Nome: {cardComputer.processor.name}</p>
+          <p>Descrição: {cardComputer.processor.description}</p>
+          <p>Socket: {cardComputer.processor.socket}</p>
+        </> : "erro processor"}
+        { cardComputer?.motherboard ? <>
+          <h3>Placa mãe</h3>
+          <p>Nome: {cardComputer.motherboard.name}</p>
+          <p>Descrição: {cardComputer.motherboard.description}</p>
+          <p>TypeMemory: {cardComputer.motherboard.typememory}</p>
+        </> : "erro motherboard"}
+        { cardComputer?.graphicscard ? <>
+          <h3>Placa de vídeo</h3>
+          <p>Nome: {cardComputer.graphicscard.name}</p>
+          <p>Descrição: {cardComputer.graphicscard.description}</p>
+          <p>PciExpress: {cardComputer.graphicscard.pciexpress}</p>
+        </> : "erro graphicscard"}
+      </Modal>
+    </>
     )
 }
 
 const TextBox = styled.div`
   display: flex;
   justify-content: center;
-  align-items: center;
   flex-direction: column;
   height: 276px;
-  width: 100%;
+  width: 150px;
   color: #303030;
   padding: 5px 0 0 0;
   & h3 {
+      text-align: center;
       font-weight: 700;
       font-size: 16px;
       line-height: 20px;
@@ -94,6 +116,7 @@ const Holder = styled.div`
     width: 150px;
     height: 247px;
     position: relative;
+    margin: 0 0 10px 0;
 `
 
 const Background = styled.div`

@@ -2,11 +2,13 @@ import styled from 'styled-components'
 import { useState, useEffect } from 'react'
 import { FiTrash2, FiEdit2 } from 'react-icons/fi'
 import { API_PATH } from '../../config'
+import Modal2 from '../Modal2'
 
 const CardMotherboard = ({piece, role, setPieces, pieces, setPcPieces, pcPieces, setShowModal, setPieceToEdit}) => {
     const { id, name, description, image } = piece
 
     const [isSelected, setIsSelected] = useState(false)
+    const [ showModal2, setShowModal2 ] = useState(false)
 
     useEffect(() => {
         handleIsSelected()
@@ -34,8 +36,8 @@ const CardMotherboard = ({piece, role, setPieces, pieces, setPcPieces, pcPieces,
                     name,
                     description,
                     socket: piece.socket,
-                    typeMemory: piece.typeMemory,
-                    pciExpress: piece.pciExpress,
+                    typememory: piece.typememory,
+                    pciexpress: piece.pciexpress,
                     price: piece.price,
                     image
                 }
@@ -45,7 +47,7 @@ const CardMotherboard = ({piece, role, setPieces, pieces, setPcPieces, pcPieces,
     }
 
     const deletePiece = async (id) => {
-        const response = await fetch(`${API_PATH}processor/delete`,{
+        const response = await fetch(`${API_PATH}motherboard/delete`,{
             method: 'DELETE',
             body: JSON.stringify({id: id})
         })
@@ -65,15 +67,16 @@ const CardMotherboard = ({piece, role, setPieces, pieces, setPcPieces, pcPieces,
             name,
             description,
             socket: piece.socket,
-            typeMemory: piece.typeMemory,
-            pciExpress: piece.pciExpress,
+            typememory: piece.typememory,
+            pciexpress: piece.pciexpress,
             price: piece.price,
             image
           })
     }
 
     return (
-        <Holder>
+        <>
+        <Holder onClick={() => setShowModal2(true)}>
             <Background style={isSelected ? {background: "#33C542", border: "none"} : {}}>
                 <Image src={image}/>
                 <TextBox>
@@ -84,6 +87,17 @@ const CardMotherboard = ({piece, role, setPieces, pieces, setPcPieces, pcPieces,
             {role === "montador" ? <DivButton><Button onClick={() => handleAddPiece()}> {isSelected ? "X" : "+"} </Button></DivButton> : ""}
             {role === "admin" ? <DivButton><Button role="admin" onClick={() => deletePiece(id)}> <FiTrash2/> </Button><Button role="admin" onClick={() => handleEditPiece()}> <FiEdit2/> </Button></DivButton> : ""}
         </Holder>
+
+        <Modal2 showModal2={showModal2} setShowModal2={setShowModal2}>
+            <h1>Informações placa-mãe</h1>
+            <p>Nome: {name}</p>
+            <p>Descrição: {description}</p>
+            <p>Socket: {piece.socket}</p>
+            <p>Tipo da memória: {piece.typememory}</p>
+            <p>PciExpress: {piece.pciexpress}</p>
+            <p>Preço: {piece.price}</p>
+        </Modal2>
+        </>
     )
 }
 
